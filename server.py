@@ -27,11 +27,15 @@ def getUuid():
 
 def checkAuth(basicAuthStr):
     auth = basicAuthStr.split()
+    log(auth)
     if len(auth)!=2:
+        log('auth length != 2')
         return False
     else:
         secret = b64decode(auth[1]).decode('utf-8').split(":")
+        log(secret)
         if len(secret) != 2:
+            log('secret length != 2')
             return False
         return (secret[0]==credential["user"] and secret[1]==credential["password"])
 
